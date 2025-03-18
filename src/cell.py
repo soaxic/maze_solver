@@ -12,24 +12,22 @@ class Cell():
         self._x2 = x2
         self._y1 = y1
         self._y2 = y2
-        if not breakwall:
-            if self.has_left_wall:
-                self._window.draw_line(Line(Point(x1, y1), Point(x1, y2)))
-            if self.has_right_wall:
-                self._window.draw_line(Line(Point(x2, y1), Point(x2, y2)))
-            if self.has_top_wall:
-                self._window.draw_line(Line(Point(x1, y1), Point(x2, y1)))
-            if self.has_bot_wall:
-                self._window.draw_line(Line(Point(x1, y2), Point(x2, y2)))
+        if self.has_left_wall:
+            self._window.draw_line(Line(Point(x1, y1), Point(x1, y2)))
         else:
-            if not self.has_left_wall:
-                self._window.draw_line(Line(Point(x1, y1), Point(x1, y2)), "black")
-            if not self.has_right_wall:
-                self._window.draw_line(Line(Point(x2, y1), Point(x2, y2)), "black")
-            if not self.has_top_wall:
-                self._window.draw_line(Line(Point(x1, y1), Point(x2, y1)), "black")
-            if not self.has_bot_wall:
-                self._window.draw_line(Line(Point(x1, y2), Point(x2, y2)), "black")
+            self._window.draw_line(Line(Point(x1, y1), Point(x1, y2)), "black")
+        if self.has_right_wall:
+            self._window.draw_line(Line(Point(x2, y1), Point(x2, y2)))
+        else:
+            self._window.draw_line(Line(Point(x2, y1), Point(x2, y2)), "black")
+        if self.has_top_wall:
+            self._window.draw_line(Line(Point(x1, y1), Point(x2, y1)))
+        else:
+            self._window.draw_line(Line(Point(x1, y1), Point(x2, y1)), "black")
+        if self.has_bot_wall:
+            self._window.draw_line(Line(Point(x1, y2), Point(x2, y2)))
+        else:
+            self._window.draw_line(Line(Point(x1, y2), Point(x2, y2)), "black")
 
 
     def draw_move(self, to_cell, undo=False):
