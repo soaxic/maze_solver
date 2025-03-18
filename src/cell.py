@@ -1,5 +1,5 @@
 from graphics import Point, Line
-from window import Window
+from window import *
 
 class Cell():
     def __init__(self, window):
@@ -26,9 +26,12 @@ class Cell():
         if undo:
             self._window.draw_line(line, "gray")
         else:
-            self._window.draw_line(line)
+            self._window.draw_line(line, "red")
 
     def get_center_point(self):
         center_x = int((self._x1 + self._x2) // 2)
         center_y = int((self._y1 + self._y2) // 2)
         return Point(center_x, center_y)
+    
+    def __repr__(self):
+        return f"Cell@{self._window}({self._x1}, {self._y1}, {self._x2}, {self._y2})"

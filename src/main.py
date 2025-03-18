@@ -1,7 +1,9 @@
 from window import *
-from cell import *
+from maze import *
 
 def main():
-    pass
+    window = Window(1300, 1300)
+    maze = Maze(10, 10, 20, 20, 64, 64, window)
+    window.wait_for_close()
 
 main()

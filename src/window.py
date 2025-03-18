@@ -1,10 +1,11 @@
 from tkinter import Tk, BOTH, Canvas
 from graphics import *
+from cell import *
 
 class Window():
     def __init__(self, width, height):
         self.root = Tk()
-        self.root.title("Dis a window")
+        self.root.title("Maze Solver")
         self.canvas = Canvas(self.root, height=height, width=width, background="black",)
         self.canvas.pack()
         self.running = False
@@ -18,10 +19,13 @@ class Window():
         self.running = True
         while self.running:
             self.redraw()
-        print("dead lol")
+        print("Closing...")
 
     def close(self):
         self.running = False
 
-    def draw_line(self, line, fill_color="red"):
+    def draw_line(self, line, fill_color="white"):
         line.draw(self.canvas, fill_color)
+
+    def __repr__(self):
+        return str(self.root.title())
