@@ -2,7 +2,7 @@ import time
 from cell import Cell
 
 class Maze():
-    def __init__(self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, window):
+    def __init__(self, x1, y1, num_rows, num_cols, cell_size_x, cell_size_y, window=None):
         self.x1 = x1
         self.y1 = y1
         self.num_rows = num_rows
@@ -23,15 +23,23 @@ class Maze():
             for j in range(self.num_rows):
                 self._draw_cell(i, j)
         
-    def _draw_cell(self, i, j):
+    def _draw_cell(self, i, j, breakwall=False):
+        if self._window is None:
+            return
         x1 = self.x1 + self.cell_size_x * i
         y1 = self.y1 + self.cell_size_y * j
         x2 = self.x1 + self.cell_size_x * i + self.cell_size_x
         y2 = self.y1 + self.cell_size_y * j + self.cell_size_y
-        
-        self._cells[i][j].draw(x1, y1, x2, y2)
+
+        self._cells[i][j].draw(x1, y1, x2, y2, breakwall)
         self._animate()
 
     def _animate(self):
         self._window.redraw()
         time.sleep(0.001)
+
+    def _break_entrance_and_exit(self):
+        self._cells[0][0].has_left_wall = False
+        self._draw_cell(0,0, True)
+        self._cells[-1][-1].has_right_wall = False
+        self._draw_cell(len(self._cells)-1,len(self._cells[len(self._cells)-1])-1, True)
