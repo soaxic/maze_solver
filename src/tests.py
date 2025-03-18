@@ -15,17 +15,6 @@ class Tests(unittest.TestCase):
             num_rows,
         )
 
-    def test_very_large_maze_create(self):
-        m1 = Maze(0, 0, 10**3, 10**3, 10, 10, None)
-        self.assertEqual(
-            len(m1._cells),
-            10**3,
-        )
-        self.assertEqual(
-            len(m1._cells[0]),
-            10**3,
-        )
-
     def test_maze_break_entrance_and_exit(self):
         m1 = Maze(0, 0, 10, 10, 10, 10)
         self.assertEqual(

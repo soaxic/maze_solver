@@ -6,8 +6,9 @@ class Cell():
         self.has_left_wall, self.has_right_wall, self.has_top_wall, self.has_bot_wall = True, True, True, True
         self._x1, self._x2, self._y1, self._y2 = None, None, None, None
         self._window = window
+        self.visited = False
 
-    def draw(self, x1, y1, x2, y2, breakwall=False):
+    def draw(self, x1, y1, x2, y2):
         self._x1 = x1
         self._x2 = x2
         self._y1 = y1
@@ -43,4 +44,4 @@ class Cell():
         return Point(center_x, center_y)
     
     def __repr__(self):
-        return f"Cell@{self._window}({self._x1}, {self._y1}, {self._x2}, {self._y2})"
+        return f"Cell@{self._window} ({self._x1}, {self._y1}, {self._x2}, {self._y2}) v={self.visited}\n"
