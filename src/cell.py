@@ -1,3 +1,4 @@
+import random
 from graphics import Point, Line
 from window import *
 
@@ -34,7 +35,11 @@ class Cell():
     def draw_move(self, to_cell, undo=False):
         line = Line(self.get_center_point(), to_cell.get_center_point())
         if undo:
-            self._window.draw_line(line, "gray")
+            r = hex(random.randint(1023,4095))[2:].zfill(3)
+            g = hex(random.randint(1023,4095))[2:].zfill(3)
+            b = hex(random.randint(1023,4095))[2:].zfill(3)
+            rgb = "#" + str(r) + str(g) + str(b)
+            self._window.draw_line(line, rgb)
         else:
             self._window.draw_line(line, "red")
 
